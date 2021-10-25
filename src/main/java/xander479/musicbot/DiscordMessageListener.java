@@ -48,6 +48,7 @@ public class DiscordMessageListener implements MessageCreateListener {
 				break;
 			
 			case "disconnect":
+				channel.sendMessage("Good bye!");
 				MusicBot.getInstance().disconnect();
 		}
 	}
