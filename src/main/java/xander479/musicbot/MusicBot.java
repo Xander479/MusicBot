@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
@@ -31,9 +29,12 @@ public class MusicBot {
 		try {
 			properties = BotProperties.getProperties();
 		}
-		catch(IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+		catch(FileNotFoundException e) {
+			// Expected if using for the first time
 			properties = BotProperties.initialise();
+		}
+		catch(ClassNotFoundException | IOException e) {
+			e.printStackTrace();
 		}
 		// Set properties now, so the constructors don't enter an infinite loop
 		((DiscordMessageListener)api.getMessageCreateListeners().get(0)).setProperties(properties);
