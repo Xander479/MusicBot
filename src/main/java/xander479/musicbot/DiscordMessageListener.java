@@ -27,7 +27,7 @@ public class DiscordMessageListener implements MessageCreateListener {
 		// checking command name
 		switch(words[0].substring(prefix.length())) {
 			case "join":
-				channel.sendMessage("Joining " + channel.getName());
+				channel.sendMessage("Joining `" + channel.getName() + "`");
 				Optional<ServerVoiceChannel> vc = author.getConnectedVoiceChannel();
 				if(vc.isPresent()) {
 					try {
